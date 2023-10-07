@@ -1,0 +1,75 @@
+canvas{
+    border: 1px solid rgb(232, 228, 228);
+
+    margin: 0 auto;
+    
+}
+
+h1{
+    font-size: 35px;
+    color:whitesmoke;
+    font-weight: bold;
+}
+
+p{
+    font-size: 24px;
+    padding: 10px;
+    color: whitesmoke;
+    border-radius: 10px;
+   
+}
+
+
+
+@media screen and (max-width: 500px) {
+    canvas{
+        width: 100%;
+        margin: 0 auto;
+    }
+   
+}
+
+body{
+    background-color:rgb(166, 132, 198);
+    display: flex;
+    
+}
+
+button{
+    border: 1px solid rgb(227, 221, 221);
+    font-size: 22px;
+    text-align: center;
+    color:whitesmoke;
+    
+
+    padding: 10px;
+    background: rgba(196, 141, 205, 0.559);
+    margin-right: 10px;
+
+    border-radius: 10px;
+    
+    
+}
+
+@media screen and (max-width: 500px) {
+    button{
+        width: 100%;
+        
+        
+    }
+   
+}
+
+#wrapper {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 500px) {
+    #wrapper { width: 70%; margin: 0 auto; height: auto; align-content: center;}
+}
+
+section{
+    padding-left: 10px;
+}
