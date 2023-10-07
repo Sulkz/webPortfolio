@@ -1,0 +1,27 @@
+<main>
+
+	<h2>My Courses</h2>
+	<p>Select a course to make a review</p>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Course Name</th>
+				<th>Description</th>
+				<th>Rating</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% for course in @courses%>
+				<tr>
+					<td align='center'>
+						<a href="/review-course?id=<%= h course.id %>"><%= h course[:name] %></a>
+					</td>
+					<td align='center'><%= h course[:description] %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+</main>

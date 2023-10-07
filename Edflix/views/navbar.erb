@@ -1,0 +1,69 @@
+<nav id="navbar">
+	<h1 id="title"><a href="/">EDflix</a></h1>
+	<div id="menu">
+		<%if session[:logged_in] %>
+			
+
+			<div id="menu">
+				<% if session[:user].type == "admin" %>
+					<a href="/logout">Logout</a>
+					<a href="/">Dashboard</a>
+					<a href="/courses">Courses</a>
+					<a href ="/admin">Admin</a>
+					<a href="/profile">Profile</a>
+				<% elsif session[:user].type == "moderator" %>
+					<a href="/logout">Logout</a>
+					<a href="/">Dashboard</a>
+					<a href="/courses">Courses</a>
+					<a href="/moderator">Moderator</a>
+					<a href="/profile">Profile</a>
+				<% elsif session[:user].type == "learner" %>
+					<a href="/logout">Logout</a>
+					<a href="/">Dashboard</a>
+					<a href="/courses">Courses</a>
+					<a href="/profile">Profile</a>
+				<% elsif session[:user].type == "manager" %>
+					<a href="/logout">Logout</a>
+					<a href="/">Dashboard</a>
+					<a href="/manager">Manager Report</a>
+					<a href="/courses">Courses</a>
+					<a href="/profile">Profile</a>
+			
+
+				<% end %>
+
+			
+			</div>
+
+		<% else %>
+			<a href="/login">Login</a>
+			<a href="/register">Register</a>
+			<a href="/courses">Courses</a>
+		<% end %>
+  </div>
+</nav>
+
+<style>
+
+	#navbar {
+		display: flex;
+		flex-direction: row; /* put elements into a row */
+		align-items: center; /* make sure they line up on the y axis */
+		justify-content: space-between; /* put space between them */
+
+		padding: 0 10px; /* add horizontal padding so that content isnt touching edge */
+		gap: 10px; /* prevent elements touching each other when page becomes small (for example a phone) */
+
+		background-color: turquoise;
+	}
+
+	#navbar #menu {
+		font-size: 1.2em;
+	}
+
+	#navbar #menu > * {
+		padding: 0 10px; /* put some horizontal space between the menu elements */
+		float: right;
+	}
+
+</style>

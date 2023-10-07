@@ -1,0 +1,22 @@
+<main>
+    <p>This course is set to start on the 26/9/2032</p>
+    <p>Join button goes here</p>
+    <form method="POST" action="/join-course">
+        <input type="hidden" name="user_id" value="<%= session[:logged_in] ? session[:user].id : "" %>">
+        <input type="hidden" name="course_id" value="<%= @course_id %>">
+        <input type="submit" value="+ Join Course">
+    </form>
+
+		<h3>Reviews</h3>
+		<% @course.reviews.each do |review| %>
+			<div id="review" class="review" style="border: 2px solid black;">
+				<p id="description"><%= h review.description %></p>
+				<p id="rating"><%= h review.rating %> / 100</p>
+			</div>
+		<% end %>
+
+</main>
+<style>
+
+
+</style>

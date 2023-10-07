@@ -1,0 +1,142 @@
+<main>
+    <script>
+        <% if @ok %>
+        alert("Added successfully!")
+        <% end %>
+    </script>
+	<h2 id="title">Add a new user</h2> <!-- Use <h2> since <h1> is being used for the navbar> -->
+	<form method="POST" id="register-form" action="/admin/add-user" autocomplete="off">
+        <%# email %>
+		<input type="text" id="email" name="email" placeholder="E-mail" value="<%= @user ? (h @user.email) : ""  %>">
+        <p class="error">
+        <%=
+        if @error_code == '0' && @user.email == ""
+            "Please fill out this field."
+        elsif @error_code == '1'
+            "Sorry, this email is already taken."
+        else
+            ""
+        end
+        %>
+        </p>
+        <%# first_name %>
+		<input type="text" id="firstname" name="first_name" placeholder="First name" value="<%= @user ? (h @user.first_name) : "" %>">
+        <p class="error">
+        <%=
+        if @error_code == '0' && @user.first_name == ""
+            "Please fill out this field."
+        else
+            ""
+        end
+        %>
+        </p>
+        <%# last_name %>
+    	<input type="text" id="lastname" name="last_name" placeholder="Last name" value="<%= @user ? (h @user.last_name) : ""  %>">
+        <p class="error">
+        <%=
+        if @error_code == '0' && @user.last_name == ""
+            "Please fill out this field."
+        else
+            ""
+        end
+        %>
+        </p>
+        <%# password %>
+		<input type="password" id="password" name="password" placeholder="Password" value="<%= @password %>">
+        <p class="error">
+        <%=
+        if @error_code == '0' && @password == ""
+            "Please fill out this field."
+        else
+            ""
+        end
+        %>
+        </p>
+        <%# password_retyped %>
+    	<input type="password" id="password_retyped" name="password_retyped" placeholder="Confirm Password" value="<%= @password_retyped %>">
+        <p class="error">
+        <%=
+        if @error_code == '0' && @password_retyped == ""
+            "Please fill out this field."
+        elsif @error_code == '2'
+            "Please make sure your passwords match."
+        else
+            ""
+        end
+        %>
+        </p>
+        <%# type %>
+        <select name="type" id="type">
+            <% User::TYPES.each do |type| %>
+            <option value="<%= type %>"><%= type %></option>
+            <%end%>
+        </select>
+        <p class="error">
+        <%=
+        if @error_code == '0' && @user.type == ""
+            "Please fill out this field."
+        else
+            ""
+        end
+        %>
+        </p>
+		<button type="submit"><b>+</b>Add user</button>
+	</form>
+    <a href="/admin/user-details">&lt;-- View all users</a>
+
+</main>
+<style>
+
+	main {
+		/* center the content to middle of page */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#title {
+        font-size: 2em;
+        font-weight:600;
+		text-decoration: underline;
+		text-align: center;
+        margin-bottom: 10px;
+	}
+
+	#register-form {
+		width: clamp(250px, 80%, 500px);
+		display: flex;
+		flex-direction: column; /* put form into a column */
+	}
+
+	#register-form input {
+		width: 100%;
+		font-size: 1.5em;
+		padding: 5px;
+		border: 1px solid black;
+		border-radius: 3px;
+	}
+
+	#register-form button {
+		width: 42%;
+        margin-top: 10px;
+		margin-bottom: 100px;
+        font-size: 1.1em
+	}
+
+    #register-form .error {
+        color: red;
+        font-size: 0.85em;
+        height: 30px;
+    }
+
+    #register-form select {
+        width: 70%;
+        padding: 4px;
+        font-size: 1.5em;
+        font-family: "Montserrat";
+        font-weight: 100;
+        border-radius: 3px;
+    }
+
+</style>

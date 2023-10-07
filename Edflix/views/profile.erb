@@ -1,0 +1,83 @@
+<main>
+    <u><h2 id="Profile">Your Profile:</h2></u>
+    <form method="POST" id="profile-form" action="/profile" autocomplete="off">
+		<h3>First name:</h3>
+        <input type="text" id="firstname" name="first_name" value="<%= h session[:user].first_name %>"/>
+		<h3>Last name:</h3>
+        <input type="text" id="lastname" name="last_name" value="<%= h session[:user].last_name %>"/>
+        <input type="submit" value="Update">
+    </form>
+
+	<h2>Course you have joined: </h2>
+	<div id="courses">
+		<% @courses.each do |course| %>
+			<div class="course">
+				<p id="title"><%= course.name%></p>
+				<p id="description"><%= course.description %></p>
+				<a href="/review-course?id=<%= h course.id %>" style="text-decoration: underline; color: purple;">Review course</a>
+			</div>
+		<% end %>
+	</div>
+</main>
+
+<style>
+
+	.courses {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.course {
+		display: flex;
+		flex-direction: row;
+		padding: 5px 5px;
+	}
+
+	.course > * {
+		padding: 5px 5px;
+	}
+
+	.course #title {
+		font-weight: bold;
+	}
+
+	
+
+main {
+		/* center the content to middle of page */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#profile {
+		text-decoration: underline;
+		text-align: center;
+	}
+
+	#profile-form {
+		width: clamp(250px, 80%, 500px);
+		display: flex;
+		align-items: center;
+		flex-direction: column; /* put form into a column */
+		gap: 2px;
+		padding: 20px
+	}
+
+	#profile-form input {
+		width: 100%;
+		font-size: 1.5em;
+		padding: 5px;
+		border: 1px solid black;
+		border-radius: 3px;
+	}
+
+	#profile-form input[type="submit"] {
+		width: 50%;
+		margin: 20px 0;
+	}
+
+    
+  
+</style>

@@ -1,0 +1,58 @@
+<main>
+    <h2 id="Reset">Reset your password</h2>
+    <form method="POST" id="reset-part1" action="/pass-reset1" autocomplete="off">
+        <input type="email" id="email" name="email" placeholder="Email" value=""/>
+		<input type="password" id="new_password" name="new_password" placeholder="Password" value=""/>
+		<input type="password" id="confirm_password" name="confirm_password" placeholder="Retype Password" value=""/>
+        <input type="submit" value="Confirm">
+    </form>
+
+	<% if @error %>
+		<p><%= h @error %></p>
+	<% end %>
+
+</main>
+
+<style>
+
+	
+
+	
+
+main {
+		/* center the content to middle of page */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#profile {
+		text-decoration: underline;
+		text-align: center;
+	}
+
+	#reset-part1 {
+		width: clamp(250px, 80%, 500px);
+		display: flex;
+		align-items: center;
+		flex-direction: column; /* put form into a column */
+		gap: 2px;
+	}
+
+	#reset-part1 input {
+		width: 100%;
+		font-size: 1.5em;
+		padding: 5px;
+		border: 1px solid black;
+		border-radius: 3px;
+	}
+
+	#reset-part1 input[type="submit"] {
+		width: 50%;
+		margin: 20px 0;
+	}
+
+    
+  
+</style>

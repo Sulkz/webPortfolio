@@ -1,0 +1,31 @@
+<!--
+This is the homepage in which will introduce the learner to the page
+-->
+<main>
+	<h1>Manager Report Page</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>email</th>
+          <th>User Type</th>
+          <th>Courses Joined</th>
+          <th>Suspended</th>
+        </tr>
+      </thead>
+
+      <tbody>
+				<% for user in @users%>
+					<tr>
+						<td align='center'><%= h user.id %></td>
+            <td align='center'><%= h user.email %></td>
+            <td align='center'><%= h user.type %></td>
+            <td align='center'><%= h user.joined_courses_names.join(", ") %></td>
+            <td align='center'><%= h @suspended_text %></td>
+					</tr>
+				<% end %>
+			</tbody>
+    </table>
+
+</main>

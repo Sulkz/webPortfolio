@@ -1,0 +1,44 @@
+/* position elements */
+* {
+	padding: 0;
+	margin:0;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	/* main page fills remaining screen */
+	height: 100%;
+	/* allows user to scroll so that content that doesn't fit on the screen can be accessed */
+	overflow: auto;
+}
+
+table, th, td{
+	border: 1px solid #000;
+	border-collapse: collapse;
+}
+table {
+	width: 70%;
+}
+th {
+	background-color: rgb(178, 226, 238);
+  }
+
+
+table tr:nth-child(odd){background:#ffffff;}
+table tr:nth-child(even){background:#dfd9d9;}
+
+/* styling */
+a, h1, h2, h3, h4, h5, h6, p, input, button, textarea, table {
+	font-family: "Montserrat"; /* global font */
+	color: black; /* global font colour */
+	text-decoration: none; /* remove underline */
+}

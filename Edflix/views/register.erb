@@ -1,0 +1,62 @@
+<main>
+
+	<% if @user %>
+		<div class="errors">
+			<% @user.errors.each do |name, reasons| %>
+				<% reasons.each do |reason| %>
+					<p><%= name + " " + reason %></p>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+
+	<h2 id="title">Create your account</h2> <!-- Use <h2> since <h1> is being used for the navbar> -->
+	<form method="POST" id="register-form" action="/register" autocomplete="off">
+    	<input type="text" id="firstname" name="first_name" placeholder="First name" value="<%= @user ? (h @user.first_name) : "" %>"/>
+    	<input type="text" id="lastname" name="last_name" placeholder="Last name" value="<%= @user ? (h @user.last_name) : ""  %>"/>
+			<input type="email" id="email" name="email" placeholder="Email" value="<%= @user ? (h @user.email) : ""  %>"/>
+		  <input type="password" id="password" name="password" placeholder="Password"/>
+    	<input type="password" id="password_retyped" name="password_retyped" placeholder="Confirm Password"/>
+			<input type="submit" value="Register">
+	</form>
+
+	<p>Or, <a href="/login">Login to your account</a><p>
+
+</main>
+<style>
+
+	main {
+		/* center the content to middle of page */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#title {
+		text-decoration: underline;
+		text-align: center;
+	}
+
+	#register-form {
+		width: clamp(250px, 80%, 500px);
+		display: flex;
+		align-items: center;
+		flex-direction: column; /* put form into a column */
+		gap: 2px;
+	}
+
+	#register-form input {
+		width: 100%;
+		font-size: 1.5em;
+		padding: 5px;
+		border: 1px solid black;
+		border-radius: 3px;
+	}
+
+	#register-form input[type="submit"] {
+		width: 50%;
+		margin: 20px 0;
+	}
+
+</style>

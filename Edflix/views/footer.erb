@@ -1,0 +1,53 @@
+<footer>
+	<%if session[:logged_in] %>
+		<div id="links">
+		
+
+		
+			<% if session[:user].type == "admin" %>
+					<a href="/report-bug">Report Bug</a>
+					<a href="/contact">Contact staff</a>
+					<a href="/mail-sub">Subscribe</a>
+
+					
+			<% elsif session[:user].type == "moderator" %>
+					<a href="/report-bug">Report Bug</a>
+					<a href="/contact">Contact staff</a>
+					<a href="/mail-sub">Subscribe</a>
+
+			<% elsif session[:user].type == "learner" %>
+					<a href="/report-bug">Report Bug</a>
+					<a href="/contact">Contact staff</a>
+					<a href="/mail-sub">Subscribe</a>
+
+			<% elsif session[:user].type == "manager" %>
+					<a href="/report-bug">Report Bug</a>
+					<a href="/contact">Contact staff</a>
+					<a href="/manager">Manager Report</a>
+					<a href="/mail-sub">Subscribe</a>
+
+
+			<% end %>
+
+		</div>
+		<% end %>
+</footer>
+
+
+<style>
+
+	footer {
+		padding: 0 20px; /* stop content from touching edge */
+		/* put footer at bottom of the page */
+		position: fixed;
+		bottom: 0;
+
+		width: 100%;
+		background-color: lightseagreen;
+	}
+
+	a{
+		padding: 10px;
+	}
+
+</style>

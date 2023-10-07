@@ -1,0 +1,28 @@
+<main>
+  <h1>View Bug Reports from Users</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Description</th>
+          <th>User ID</th>
+        </tr>
+      </thead>
+
+      <tbody>
+				<% for report in @admin_reports%>
+					<tr>
+						<td align='center'><%= h report[:subject] %></td>
+						<td align='center'><%= h report[:description] %></td>
+            <td align='center'><%= h report[:user_id] %></td>
+					</tr>
+				<% end %>
+			</tbody>
+    </table>
+
+
+    
+    
+
+</main>

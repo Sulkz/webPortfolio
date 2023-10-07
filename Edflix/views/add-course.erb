@@ -1,0 +1,99 @@
+<main>
+
+	<% if @course %>
+		<div class="errors">
+			<% @course.errors.each do |name, reasons| %>
+				<% reasons.each do |reason| %>
+					<p><%= name + " " + reason %></p>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+
+	<h2 id="title">Add a Course</h2>
+	<form method="POST" id="add-course-form" action="/moderator/add-course" autocomplete="off">
+		<input type="text" id="course_name" name="name" placeholder="Name" value="<%= h @course.name if @course %>"/>
+    	<input type="text" id="description" name="description" placeholder="Description" value="<%= h @course.description if @course %>"/>
+		<input type="text" id="price" name="price" placeholder="price" value="<%= h @course.price if @course %>"/>
+
+	<div id="ranking-wrapper">
+		<label for="ranking-dropdown">Ranking:</label>
+			<select id="ranking-dropdown" name="ranking_id">
+					<option value="nil">Select</option>
+				<% $rankings.each do |ranking| %>
+					<option value="<%= ranking.id %>"><%= h ranking.name %></option>
+				<% end %>
+			</select></div>
+
+		<div id="moderator-dropdown-wrapper">
+			<label for="moderator-dropdown">Moderator:</label>
+			<select id="moderator-dropdown" name="moderator_id">
+					<option value="nil">Select</option>
+				<% $moderators.each do |moderator| %>
+					<option value="<%= moderator.id %>"><%= h moderator.email %></option>
+				<% end %>
+			</select>
+		</div>
+
+    <div id="trusted-dropdown-wrapper">
+      <label for="trusted-dropdown">Trusted:</label>
+      <select id="trusted-dropdown" name="trusted">
+        <option value="nil">Select</option>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+
+		<input type="submit" value="Add">
+	</form>
+
+	<% if @course %>
+		<% @course.errors.each do |error| %>
+		<p><%= h error %></p>
+		<% end %>	
+	<% end %>
+
+</main>
+<style>
+
+	#moderator-dropdown-wrapper {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+	}
+
+	main {
+		/* center the content to middle of page */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#title {
+		text-decoration: underline;
+		text-align: center;
+	}
+
+	#add-course-form {
+		width: clamp(250px, 80%, 500px);
+		display: flex;
+		align-items: center;
+		flex-direction: column; /* put form into a column */
+		gap: 2px;
+	}
+
+	#add-course-form input {
+		width: 100%;
+		font-size: 1.5em;
+		padding: 5px;
+		border: 1px solid black;
+		border-radius: 3px;
+	}
+
+	#add-course-form input[type="submit"] {
+		width: 50%;
+		margin: 20px 0;
+	}
+
+</style>

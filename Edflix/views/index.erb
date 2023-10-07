@@ -1,0 +1,123 @@
+<!--
+This is the homepage in which will introduce the learner to the page
+-->
+<main>
+	<h1>Home</h1>
+	<h2>
+		Hi, <%= session[:logged_in] ? (h session[:user].first_name) : "Anonymous" %>
+	</h2>
+
+	<div class="suggested">
+		<h2 class="suggested_title">Recommended for you</h2>
+		<div class="suggested_courses">
+			<div class="suggested_module same_tag_courses">
+				<h5>Recommend</h5>
+				<h3>Maybe you like</h3>
+				<div class="course_list">
+					<% @same_tag_courses.each do |course| %>
+					<% if course.nil? %>
+						<% next %>
+					<% end %>
+					<hr/>
+					<a class="course" href="/course?id=<%= course.id%>">
+						<%# <div class="course"> %>
+							<h4><%= course.name %></h4>
+							<p><%= course.description %></p>
+						<%# </div> %>
+					</a>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="suggested_module popularity_best_courses">
+				<h5>Recommend</h5>
+				<h3>Popularity Best</h3>
+				<div class="course_list">
+					<% @most_popular_courses.each do |course| %>
+					<% if course.nil? %>
+						<% next %>
+					<% end %>
+					<hr/>
+					<a class="course" href="/course?id=<%= course.id%>">
+						<%# <div class="course"> %>
+							<h4><%= course.name %></h4>
+							<p><%= course.description %></p>
+						<%# </div> %>
+					</a>
+					<% end %>
+				</div>
+			</div>
+		</div>
+  	</div>
+</main>
+<style>
+	main {
+		overflow: visible;
+		min-width: 1304px;
+		margin: 0 auto;
+	}
+
+	/* suggested */
+	.suggested {
+		margin: 20px 0;
+	}
+	.suggested_title {
+		font-size: 1.6em;
+		font-weight: 900;
+		margin-bottom: 5px;
+	}
+	.suggested_courses {
+		--n: 2;
+		--gap: 15px;
+		--each-width: calc((100% + var(--gap)) / var(--n) - var(--gap));
+		display: grid;
+		grid-template-columns: repeat(var(--n), var(--each-width));
+		grid-gap: var(--gap);
+	}
+	.suggested_module {
+		background-color: rgb(255, 255, 255);
+		border-radius: 12px;
+		padding: 8px 10px 18px 10px;
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+		rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+	}
+	.suggested_module h5 {
+		font-size: 0.9em;
+		color: rgb(100, 100, 100);
+		font-weight: 550;
+		padding: 0 10px;
+	}
+	.suggested_module h3 {
+		font-size: 1.55em;
+		font-weight: 800;
+		margin-bottom: 20px;
+		padding: 0 10px;
+	}
+	.course_list hr {
+		width: 96%;
+		margin: 0 auto;
+		margin-bottom: 4px;
+		border: 0;
+		height: 1px;
+		background-color: rgba(0, 0, 0, 0.15);
+	}
+	.course_list hr:nth-child(1) {
+		display: none;
+	}
+	.course {
+		display: block;
+		padding: 4px 10px;
+		border-radius: 10px;
+		transition: background-color 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);;
+	}
+	.course:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+	.course h4 {
+		font-size: 1.4em;
+		font-weight: 600;
+	}
+	.course p {
+		color: rgb(70, 70, 70);
+	}
+</style>

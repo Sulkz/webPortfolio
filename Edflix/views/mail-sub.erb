@@ -1,0 +1,74 @@
+<main>
+  <h2>Subscribe to your course!</h2>
+  <h3>We'll send you the latest news, new courses, events and many more. Click on the course you would like to subscribe to: </h3>
+  
+  <form method="POST" id="subscribe-form" action="/mail-sub">
+    <div id="courses" class="courses">
+      <% @courses.each do |course| %>
+        <div class="course">
+          <label for="<%= course.name %>"><%= course.name %></label>
+          <input type="submit" id="<%= course.name %>" name="course_name" value="Subscribe"/>
+        </div>
+      <% end %>
+    </div>
+  </form>
+</main>
+
+<style>
+
+  .courses {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 20px; /* increase the gap between the grid items */
+	}
+  .course {
+		max-width: 250px; /* set a maximum width for the input box */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 10px;
+		border: 1px solid black;
+		border-radius: 3px;
+  }
+
+  .course input[type="submit"]:hover {
+  		background-color: skyblue;
+	}
+
+  .course label {
+		font-weight: bold;
+		margin-bottom: 5px;
+  }
+
+  main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+  }
+  
+  #subscribe-form {
+		width: clamp(250px, 80%, 500px);
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		gap: 10px;
+  }
+
+  #subscribe-form input {
+		font-size: 0.9em;
+		border: 1px solid black;
+		border-radius: 3px;
+		padding: 15px;
+  }
+
+  #subscribe-form input[type="submit"] {
+		width: 100%;
+		margin: 2px 0;
+  }
+
+  h3 {
+ 	 margin-bottom: 20px;
+	}
+</style>

@@ -1,0 +1,135 @@
+<main>
+
+    <script>
+        if (<%= @ok %> == 1) {
+            alert("OK, Suspended successfully!")
+        } else if (<%= @ok %> == 0) {
+            alert("Failed to Suspend!")
+        } else if (<%= @ok %> == 2) {
+            alert("Reinstated successfully!")
+        }
+    </script>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>E-mail</th>
+                <th>First-name</th>
+                <th>Last-name</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |u| %>
+                <% if @suspend == u.id.to_s %>
+                <%# suspend %>
+                <form action="/admin/suspend-user" method="post">
+                    <input name="id" type="hidden" value="<%= u.id %>">
+                    <tr id="<%= u.id %>">
+                        <td><%= u.id %></td>
+                        <td><%= u.email %></td>
+                        <td><%= u.first_name %></td>
+                        <td><%= u.last_name %></td>
+                        <td><%= u.type %></td>
+                        <td><%= u.suspended = "Pending" %></td>
+                        <td>
+                            <button><a href="/admin/suspend-user">Cancel</a></button>
+                            <button type="submit">Submit</button>
+                        </td>
+                    </tr>
+                </form>
+
+                <% elsif @reinstate == u.id.to_s %>
+                <%# reinstate %>
+                <form action="/admin/reinstate-user" method="post">
+                <input type="hidden" name="id" value="<%= u.id %>">
+                    <tr id="<%= u.id %>">
+                        <td><%= u.id %></td>
+                        <td><%= u.email %></td>
+                        <td><%= u.first_name %></td>
+                        <td><%= u.last_name %></td>
+                        <td><%= u.type %></td>
+                        <td><%= u.suspended = "Pending" %></td>
+                        <td>
+                            <button><a href="/admin/suspend-user">Cancel</a></button>
+                            <button type="submit">Submit</button>
+                        </td>
+                    </tr>
+                </form>
+
+                <% else %>
+                <%# normal to show %>
+                <tr id="<%= u.id %>">
+                    <td><%= u.id %></td>
+                    <td><%= u.email %></td>
+                    <td><%= u.first_name %></td>
+                    <td><%= u.last_name %></td>
+                    <td><%= u.type %></td>
+                    <td><%= u.suspended == 1 ? "Suspended": "" %><%= u.suspended == 0 ? "Active": "" %></td>
+                    <td>
+                        <button><a href="/admin/suspend-user?suspend=<%= u.id %>">Suspend</a></button>
+                        <button><a href="/admin/suspend-user?reinstate=<%= u.id %>">Reinstate</a></button>
+                    </td>
+                </tr>
+
+                <% end %>
+            <% end %>
+
+        </tbody>
+    </table>
+
+
+</main>
+<style>
+    table {
+        --font-size: 16px;
+        --td-width : 175px;
+        width: auto;
+        /* max-width: 80%; */
+        margin-top: 5vh;
+    }
+
+    table td {
+        width: var(--td-width);
+        max-width: var(--td-width);
+    }
+
+    table td:nth-child(1) {
+        --width: 38px;
+        width: var(--width);
+        max-width: var(--width);
+    }
+    table td:nth-child(2) {
+        --width: 260px;
+        width: var(--width);
+        max-width: var(--width);
+    }
+
+    input {
+        width: 96%;
+        font-size: var(--font-size);
+        text-align: center;
+    }
+
+    select {
+        font-size: var(--font-size);
+    }
+
+    .add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto;
+		width: 40vw;
+        height: 20px;
+    }
+
+    .add a {
+        display: inline-block;
+        width: 100%;
+    }
+
+</style>

@@ -1,0 +1,166 @@
+<%#
+    Show all user information and modify
+    by JINGYU WANG (NEO)
+    2023-04-30 05:30am
+%>
+
+<main>
+
+    <script>
+        if (<%= @ok %> == 1) {
+            alert("OK, Modified successfully!")
+        } else if (<%= @ok %> == 0) {
+            alert("Modification failed!")
+        } else if (<%= @ok %> == 2) {
+            alert("Deleted successfully!")
+        }
+    </script>
+
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>E-mail</th>
+                <th>first-name</th>
+                <th>last-name</th>
+                <th>type</th>
+                <th>password</th>
+                <th>state</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |u| %>
+                <% if @edit == u.id.to_s %>
+                <%# edit %>
+                <form action="/admin/edit-user" method="post">
+                    <input name="id" type="hidden" value="<%= u.id %>">
+                    <tr id="<%= u.id %>">
+                        <td><%= u.id %></td>
+                        <td><input name="email" type="text" value="<%= u.email %>"></td>
+                        <td><input name="first_name" type="text" value="<%= u.first_name %>"></td>
+                        <td><input name="last_name" type="text" value="<%= u.last_name %>"></td>
+                        <td>
+                            <select name="type">
+                                <option value="learner" <%= u.type=="learner" ? "selected" : "" %>>learner</option>
+                                <option value="moderator" <%= u.type=="moderator" ? "selected" : "" %>>moderator</option>
+                                <option value="manager" <%= u.type=="manager" ? "selected" : "" %>>manager</option>
+                                <option value="admin" <%= u.type=="admin" ? "selected" : "" %>>admin</option>
+                                <!-- <option value="test" <%= u.type=="test" ? "selected" : "" %>>test</option> -->
+                            </select>
+                        </td>
+                        <td><input name="password" type="password" placeholder="********"></td>
+                        <% if u.suspended == 1 %>
+                            <td style="color: red">suspended</td>
+                        <% else %>
+                            <td>normal</td>
+                        <% end %>
+                        <td>
+                            <button><a href="/admin/user-details">Cancel</a></button>
+                            <button type="submit">Submit</button>
+                        </td>
+                    </tr>
+                </form>
+
+                <% elsif @delete == u.id.to_s %>
+                <%# delete %>
+                <form action="/admin/delete-user" method="post">
+                <input type="hidden" name="id" value="<%= u.id %>">
+                    <tr id="<%= u.id %>">
+                        <td><%= u.id %></td>
+                        <td><%= u.email %></td>
+                        <td><%= u.first_name %></td>
+                        <td><%= u.last_name %></td>
+                        <td><%= u.type %></td>
+                        <td>********</td>
+                        <% if u.suspended == 1 %>
+                            <td style="color: red">suspended</td>
+                        <% else %>
+                            <td>normal</td>
+                        <% end %>
+                        <td>
+                            <button type="submit">Confirmed</button>
+                            <button><a href="/admin/user-details">Cancel</a></button>
+                        </td>
+                    </tr>
+                </form>
+
+                <% else %>
+                <%# normal to show %>
+                <tr id="<%= u.id %>">
+                    <td><%= u.id %></td>
+                    <td><%= u.email %></td>
+                    <td><%= u.first_name %></td>
+                    <td><%= u.last_name %></td>
+                    <td><%= u.type %></td>
+                    <td>********</td>
+                    <% if u.suspended == 1 %>
+                        <td style="color: red">suspended</td>
+                    <% else %>
+                        <td>normal</td>
+                    <% end %>
+                    <td>
+                        <button><a href="/admin/user-details?edit=<%= u.id %>">Editor</a></button>
+                        <button><a href="/admin/user-details?delete=<%= u.id %>">Delete</a></button>
+                      
+                    </td>
+                </tr>
+
+                <% end %>
+            <% end %>
+
+        </tbody>
+    </table>
+
+    <button class="add"><a href="/admin/add-user"><b>+</b>Add user</a></button>
+
+</main>
+<style>
+    table {
+        --font-size: 16px;
+        --td-width : 175px;
+        width: auto;
+        margin-top: 5vh;
+    }
+
+    table td {
+        width: var(--td-width);
+        max-width: var(--td-width);
+    }
+
+    table td:nth-child(1) {
+        --width: 38px;
+        width: var(--width);
+        max-width: var(--width);
+    }
+    table td:nth-child(2) {
+        --width: 260px;
+        width: var(--width);
+        max-width: var(--width);
+    }
+
+    input {
+        width: 96%;
+        font-size: var(--font-size);
+        text-align: center;
+    }
+
+    select {
+        font-size: var(--font-size);
+    }
+
+    .add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto;
+		width: 40vw;
+        height: 20px;
+    }
+
+    .add a {
+        display: inline-block;
+        width: 100%;
+    }
+
+</style>

@@ -1,0 +1,37 @@
+<main>
+  <h1>Report Bug</h1>
+  <h2>Please enter the details of the bug into the form below.</h2>
+
+  <form method="POST" id="report-bug-form" action="/report-bug">
+	<input type="hidden" name="user_id" value="<%= session[:user].id %>"/>
+    <input type="text" id="subject" name="subject" placeholder="Subject" required/>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+
+</main>
+<style>
+  main {
+		/* center the content to middle of page */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+	}
+	#bug-reportform {
+		width: clamp(250px, 100%, 500px);
+		display: flex;
+		align-items: center;
+		flex-direction: column; /* put form into a column */
+		gap: 10px;
+	}
+
+  textarea{
+    display: flex;
+    flex-direction: column;
+	width: clamp(250px, 100%, 500px);
+	gap: 10px;
+  }
+</style>

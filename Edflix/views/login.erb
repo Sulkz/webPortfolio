@@ -1,0 +1,56 @@
+<main>
+
+	<h2 id="title">Login to your account</h2> <!-- Use <h2> since <h1> is being used for the navbar> -->
+	<form id="login-form" method="POST" action="/login" autocomplete="off">
+		<input type="text" id="email" name="email" placeholder="Email"/>
+		<input type="password" id="password" name="password" placeholder="Password"/>
+		<input type="submit" value="Login">
+	</form>
+
+	<% if @error %>
+		<p><%= h @error %></p>
+	<% end %>
+
+	<p style="margin-bottom: 10px;"><a href="/register" style="text-decoration: underline; color: purple;">Register an account</a></p>
+	<p>Or</p>
+	<p style="margin-top: 10px;"><a href="/pass-reset1" style="text-decoration: underline; color: purple;">Forgotten password?</a></p>
+
+</main>
+
+<style>
+
+	main {
+		/* center the content to middle of page */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#title {
+		text-decoration: underline;
+		text-align: center;
+	}
+
+	#login-form {
+		width: clamp(250px, 80%, 500px);
+		display: flex;
+		align-items: center;
+		flex-direction: column; /* put form into a column */
+		gap: 2px;
+	}
+
+	#login-form input {
+		width: 100%;
+		font-size: 1.5em;
+		padding: 5px;
+		border: 1px solid black;
+		border-radius: 3px;
+	}
+
+	#login-form input[type="submit"] {
+		width: 50%;
+		margin: 20px 0;
+	}
+
+</style>

@@ -1,0 +1,86 @@
+<main>
+    <form method="POST" id="contact-form" action="/contact" autocomplete="off">
+		<!-- The different option that can be selected  -->
+
+        <label for="Course">Choose a degree program: </label>
+        <select name="courses" id="course">
+            <div id="courses">
+				<% @courses.each do |course| %>
+					<div class="course">
+						<option value="list_courses"><%= course.name%></option>
+					</div>
+				<% end %>
+			</div>
+        </select>
+
+		<label for="Lecturers">Course Providers : </label>
+		<select name="Lecturers" id="teachers">
+			<option value="Module Leader">Moderator 1</option>
+			<option value="Module Leader2">Moderator 2</option>
+			<option value="Module Leader3">Moderator 3</option>
+		</select>
+		
+		<label for="studyLevel">Level of study: </label>
+		<select name="levels" id="levels">
+			<option value="l1">First year</option>
+			<option value="l2">Second year</option>
+			<option value="l3">Final year</option>
+			<option value="l1">Masters</option>
+		</select>
+
+		<label for="reason">Reasons: </label>
+		<select name="reasons" id="reasons">
+			<option value="r1">Medical issue</option>
+			<option value="r2">Absence</option>
+			<option value="r3">Other</option>
+		</select>
+
+        <label for="Description">Description: </label>
+		<textarea name="Description" id="" cols="30" rows="6"></textarea>
+        
+
+        <input type="submit" value="Submit">
+
+    </form>
+</main>
+
+<style>
+  main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+  }
+
+  #contact-form {
+		width: clamp(600px, 80%, 250px);
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		gap: 8px;
+		padding: 12px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		margin: 16px;
+    	font-size: 14px;
+  }
+ 
+  select, textarea, input[type="submit"] {
+		width: 100%;
+		font-size: 14px;
+		padding: 8px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		margin: 0;
+		box-sizing: border-box;
+  }
+
+  select:focus, textarea:focus, input[type="submit"]:focus {
+		outline: none;
+		box-shadow: 0 0 5px #ddd;
+  }
+
+  input[type="submit"]:hover {
+		background-color: skyblue;
+	}
+</style>

@@ -1,0 +1,27 @@
+<main>
+	<table>
+		<tr>
+			<th>id (Primary Key)</th>
+			<th>email</th>
+			<th>Password</th>
+		</tr>
+
+		<% @example_users.each do |example_user| %>
+			<tr>
+				<td><%= h example_user[:id] %></td>
+				<td><%= h example_user[:email] %></td>
+				<td><%= h example_user[:password] %></td>
+			</tr>
+		<% end %>
+		
+	</table>
+</main>
+
+<style>
+
+	table td {
+		padding: 5px;
+		outline: 1px black solid;
+	}
+
+</style>
